@@ -20,7 +20,9 @@ public:
 
 	Fixed(const int value);
 	Fixed(const float value);
-	Fixed& operator<<(const Fixed& f);
+
+	int		toInt(void) const;
+	float	toFloat(void) const;
 
 private:
 
@@ -28,5 +30,7 @@ private:
 	int					rawBit;
 
 };
+
+std::ostream& operator<<(std::ostream& out, const Fixed& rhs);
 
 #endif

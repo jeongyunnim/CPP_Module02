@@ -46,15 +46,12 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	/*
-	1. 문자로 저장하여 변환하기
-	2. 소수점 자릿수가 없을 떄까지 10을 곱하기
-	3. 2진수로 생각해보기. value의 값에 2-e31을...
-	4. int로 캐스팅 한 뒤 << 8을 하고 소숫점은 그 다음에 생각하기
-	*/
+	setRawBits(value * pow(2, fractional));
 }
+
 Fixed& Fixed::operator<<(const Fixed& f)
 {
-
+	std::cout << f.rawBit;
+	return *this;
 }
 

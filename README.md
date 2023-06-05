@@ -75,3 +75,71 @@ Destructor called
 Destructor called
 Destruct
 ```
+
+## Exercise 01: Towards a more useful fixed-point number class
+
+이전 예제에서는 좋은 시작이었으나, 만든 클래스는 쓸모가 없었다. 0.0만 표현할 수 있을뿐이었다.
+
+아래의 생성자와 멤버함수를 클래스에 추가헤야 한다.
+
+- const int를 파라미터로 받는 생성자.
+    고정 소수점 수와 일치하는 값으로 변환한다. 분모 비트의 값은 8로 초기화 된다.
+
+- const float를 파라미터로 받는 생성자.
+    고정 소수점 수와 일치하는 값으로 변환한다. 분모 비트의 값은 8로 초기화 된다.
+
+- float toFloat(void) const;
+    고정 소수점에서 부동 소수점 수로 변환한다.
+
+- int toInt(void) const;
+    고정 소수점에서 정수로 변환한다.
+
+또한 아래의 함수를 Fixed class에 추가해야 한다.
+
+- 연산자 << 오버로딩
+    float 으로 표현된 고정 소수점 수를 output stream에 매개변수로 전달한다.
+
+```
+#include <iostream>
+int main( void ) {
+Fixed a;
+Fixed const b( 10 );
+Fixed const c( 42.42f );
+Fixed const d( b );
+a = Fixed( 1234.4321f );
+std::cout << "a is " << a << std::endl;
+std::cout << "b is " << b << std::endl;
+std::cout << "c is " << c << std::endl;
+std::cout << "d is " << d << std::endl;
+std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+return 0;
+}
+```
+출력은 이와 같아야 한다.
+```
+$> ./a.out
+Default constructor called
+Int constructor called
+Float constructor called
+Copy constructor called
+Copy assignment operator called
+Float constructor called
+Copy assignment operator called
+Destructor called
+a is 1234.43
+b is 10
+c is 42.4219
+d is 10
+a is 1234 as integer
+b is 10 as integer
+c is 42 as integer
+d is 10 as integer
+Destructor called
+Destructor called
+Destructor called
+Destructor called
+$>
+```

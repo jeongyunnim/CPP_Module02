@@ -44,14 +44,6 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	// float	temp;
-
-	// std::cout << "Float constructor called" << std::endl;
-	// temp = value * 100;
-	// temp = round(temp);
-	// temp = temp / 100;
-	// setRawBits(temp * static_cast<float>(1 << fractional));
-
 	int		intPart;
 	int		fractionalPart;
 	int		signPart;

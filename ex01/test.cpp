@@ -51,5 +51,12 @@ int main(void)
 	iTest = 0b000000001000000000000000000010;
 	memcpy(&fTest, &iTest, sizeof(int));
 	std::cout << "fTest: " << fTest << std::endl;
+	
+	std::cout << "\n\n\n";
+	fTest = 42.42f;
+	memcpy(&iTest, &fTest, sizeof(int));
+	std::cout << "fTest: " << fTest << std::endl;
+	std::cout << "iTest: " << iTest << std::endl;
+	
 	return 0;
 }

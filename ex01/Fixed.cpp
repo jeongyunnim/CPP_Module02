@@ -37,46 +37,52 @@ Fixed::Fixed(const Fixed& f)
 }
 
 Fixed::Fixed(const int value)
-	:	rawBit(value << fractional)
 {
+	rawBit = value << fractional;
 	std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(const float value)
 {
-	float	result;
-	std::cout << "Float constructor called" << std::endl;
-	result = value * pow(2, 8);
-	setRawBits(result);
+	// float	temp;
+
+	// std::cout << "Float constructor called" << std::endl;
+	// temp = value * 100;
+	// temp = round(temp);
+	// temp = temp / 100;
+	// setRawBits(temp * static_cast<float>(1 << fractional));
+
+	int		intPart;
+	int		fractionalPart;
+	int		signPart;
+
+	if (value < 0)
+		signPart = -1;
+	else
+		signPart = 1;
+	intPart = static_cast<int>(std::abs(value));
+	fractionalPart = static_cast<int>((std::abs(value) - intPart) * (1 << fractional));
+	setRawBits((intPart << fractional | fractionalPart) * signPart);
 }
 
 int	Fixed::toInt(void) const
 {
-	return (getRawBits() >> fractional);
+	int	result;
+
+	result = round(toFloat());
+	return (result);
 }
 
 float	Fixed::toFloat(void) const
 {
 	float	result;
-	int		integer;
-	int		decimal;
-
-	integer = getRawBits() >> 8;
-	decimal = getRawBits() - integer;
-	result = integer + static_cast<float>(decimal * pow(2, -8));
+	
+	result = getRawBits() / static_cast<float>(1 << fractional);
 	return (result);
 }
 
 std::ostream& operator<<(std::ostream& out, const Fixed& rhs)
 {
-	int	integer;
-	int	decimal;
-
-	integer = rhs.getRawBits() >> 8;
-	decimal = rhs.getRawBits() - integer;
-	if (decimal != 0)
-		out << integer << '.' << decimal;
-	else
-		out << integer;
+	out << rhs.toFloat();
 	return (out);
 }

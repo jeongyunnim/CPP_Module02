@@ -1,3 +1,4 @@
+#include <cstring>
 #include "Fixed.hpp"
 
 const int Fixed::fractional = 8;
@@ -44,24 +45,14 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	int		intPart;
-	int		fractionalPart;
-	int		signPart;
-
-	if (value < 0)
-		signPart = -1;
-	else
-		signPart = 1;
-	intPart = static_cast<int>(std::abs(value));
-	fractionalPart = static_cast<int>((std::abs(value) - intPart) * (1 << fractional));
-	setRawBits((intPart << fractional | fractionalPart) * signPart);
+	setRawBits(roundf(value * (1 << fractional)));
 }
 
 int	Fixed::toInt(void) const
 {
 	int	result;
 
-	result = round(toFloat());
+	result = roundf(toFloat());
 	return (result);
 }
 

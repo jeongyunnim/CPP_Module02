@@ -84,17 +84,7 @@ Fixed::Fixed(const int value)
 
 Fixed::Fixed(const float value)
 {
-	int		intPart;
-	int		fractionalPart;
-	int		signPart;
-
-	if (value < 0)
-		signPart = -1;
-	else
-		signPart = 1;
-	intPart = static_cast<int>(std::abs(value));
-	fractionalPart = static_cast<int>((std::abs(value) - intPart) * (1 << fractional));
-	setRawBits((intPart << fractional | fractionalPart) * signPart);
+	setRawBits(roundf(value * (1 << fractional)));
 }
 
 int	Fixed::toInt(void) const
@@ -165,7 +155,7 @@ Fixed		Fixed::operator+(const Fixed& rhs)
 {
 	Fixed	temp(this->getRawBits() + rhs.getRawBits());
 
-	return (temp); // 지역 변수를 반환하면 값이 어떻게 대입이 되는가? 얕은 복사가 일어나는가 깊은 복사가 일어나는가?
+	return (temp);
 }
 
 Fixed		Fixed::operator-(const Fixed& rhs)

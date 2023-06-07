@@ -98,7 +98,7 @@ int	Fixed::toInt(void) const
 float	Fixed::toFloat(void) const
 {
 	float	result;
-	
+
 	result = getRawBits() / static_cast<float>(1 << fractional);
 	return (result);
 }
@@ -169,7 +169,6 @@ Fixed		Fixed::operator*(const Fixed& rhs)
 {
 	float	result;
 	
-	// result = (this->toFloat() * rhs.toFloat());
 	result = (this->getRawBits() * rhs.getRawBits()) / (1 << fractional);
 	Fixed	temp(result / (1 << fractional));
 	
@@ -179,9 +178,16 @@ Fixed		Fixed::operator*(const Fixed& rhs)
 Fixed		Fixed::operator/(const Fixed& rhs)
 {
 	float	result;
+	Fixed	temp;
 	
+	if (rhs.getRawBits() == 0)
+	{
+		std::cerr << "Error\nDived by zero error" << std::endl;
+		temp.setRawBits(0);
+		return (temp);
+	}
 	result = ((this->getRawBits() * (1 << fractional))) / rhs.getRawBits();
-	Fixed	temp(result);
+	temp.setRawBits(result);
 	return (temp);
 }
 

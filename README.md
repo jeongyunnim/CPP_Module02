@@ -214,7 +214,7 @@ $>
     - Anything else useful;
 
 - 결론적으로 아래의 bsp함수를 구현하여야 한다.
-    `bool bsp( Point const a, Point const b, Point const point)`
+    `bool bsp( Point const a, Point const b, Point const c, Point const point)`
     - a, b, c: 삼각형의 꼭짓점
     - point: 체크할 2차원 점
     - 반환 값: 삼각형 안에 있다면 `true`, 밖에 있다면 `false`. 따라서, 포인트가 꼭짓점 또는 모서리에 존재하면 `false`를 반환한다.

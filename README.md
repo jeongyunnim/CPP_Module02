@@ -143,3 +143,80 @@ Destructor called
 Destructor called
 $>
 ```
+
+## Exercise 02: Now we're talking
+
+public 멤버 함수로 아래의 연산자들을 오버로드하라.
+- 비교 연산자: >, <, >=, <=, ==, !=
+- 산술 연산자: +. -, *, /
+- 증감연산자 ++, -- (전위 연산자와 후위연산자): 고정 소수점에서 표현할 수 있는 가장 작은 단위를 증감시킨다.
+
+public 멤버 함수로 아래의 함수를 오버로드하라.
+- Fixed	Fixed::max(const Fixed& lhs, const Fixed& rhs)
+- Fixed	Fixed::max(Fixed& lhs, Fixed& rhs)
+- Fixed	Fixed::min(const Fixed& lhs, const Fixed& rhs)
+- Fixed	Fixed::min(Fixed& lhs, Fixed& rhs)
+
+클래스를 테스트하는 코드를 만들어보아라.
+아래의 코드를 실행한 뒤 결과를 비교해보아라.
+
+```
+#include <iostream>
+
+int main( void ) {
+
+Fixed a;
+Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
+std::cout << a << std::endl;
+std::cout << ++a << std::endl;
+std::cout << a << std::endl;
+std::cout << a++ << std::endl;
+std::cout << a << std::endl;
+
+std::cout << b << std::endl;
+
+std::cout << Fixed::max( a, b ) << std::endl;
+return 0;
+}
+```
+
+실행 결과
+```
+$> ./a.out
+0
+0.00390625
+0.00390625
+0.00390625
+0.0078125
+10.1016
+10.1016
+$>
+```
+
+## Exercise 03: BSP
+
+이제 우리는 고정소수점의 클래스를 갖게 됐다. 사용해볼까나?
+임의의 점이 삼각형 안에 있는지를 판단하는 함수를 구현하라.
+
+(BSP는 binary space partitioning의 약자이다.)
+
+- Orthodox Canonical Form에 따라 2차원 점을 표현하는 Point 클래스를 만들어라.
+- private
+    - Fixed const x;
+    - Fixed const y;
+    - Anything else useful;
+- public
+    - x와 y가 0으로 초기화 되는 기본 생성자.
+    - 두 개의 const float을 파라미터로 받는 생성자. (const float x, const float y)
+    - 복사 생성자
+    - 대입 연산자 오버로딩
+    - 소멸자
+    - Anything else useful;
+
+- 결론적으로 아래의 bsp함수를 구현하여야 한다.
+    `bool bsp( Point const a, Point const b, Point const point)`
+    - a, b, c: 삼각형의 꼭짓점
+    - point: 체크할 2차원 점
+    - 반환 값: 삼각형 안에 있다면 `true`, 밖에 있다면 `false`. 따라서, 포인트가 꼭짓점 또는 모서리에 존재하면 `false`를 반환한다.
+
+테스트 코드를 직접 작성하여 테스트 해보아라.

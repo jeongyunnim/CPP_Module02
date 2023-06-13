@@ -40,7 +40,7 @@ Point::Point(const float xPoint, const float yPoint)
 }
 
 Point::Point(const Fixed xPoint, const Fixed yPoint)
-	:	x(xPoint.getRawBits())
-	,	y(yPoint.getRawBits())
+	:	x(xPoint.toFloat())
+	,	y(yPoint.toFloat())
 {
 }

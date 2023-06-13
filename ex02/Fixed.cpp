@@ -153,15 +153,17 @@ bool		Fixed::operator!=(const Fixed& rhs)
 
 Fixed		Fixed::operator+(const Fixed& rhs)
 {
-	Fixed	temp(this->getRawBits() + rhs.getRawBits());
-
+	Fixed	temp;
+	
+	temp.setRawBits(this->getRawBits() + rhs.getRawBits());
 	return (temp);
 }
 
 Fixed		Fixed::operator-(const Fixed& rhs)
 {
-	Fixed	temp(this->getRawBits() - rhs.getRawBits());
-
+	Fixed	temp;
+	
+	temp.setRawBits(this->getRawBits() - rhs.getRawBits());
 	return (temp);
 }
 

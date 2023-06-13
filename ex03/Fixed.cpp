@@ -153,15 +153,17 @@ bool		Fixed::operator!=(const Fixed& rhs)
 
 Fixed		Fixed::operator+(const Fixed& rhs)
 {
-	Fixed	temp(this->getRawBits() + rhs.getRawBits());
-
+	Fixed	temp;
+	
+	temp.setRawBits(this->getRawBits() + rhs.getRawBits());
 	return (temp);
 }
 
 Fixed		Fixed::operator-(const Fixed& rhs)
 {
-	Fixed	temp(this->getRawBits() - rhs.getRawBits());
-
+	Fixed	temp;
+	
+	temp.setRawBits(this->getRawBits() - rhs.getRawBits());
 	return (temp);
 }
 
@@ -180,12 +182,12 @@ Fixed		Fixed::operator/(const Fixed& rhs)
 	float	result;
 	Fixed	temp;
 	
-	if (rhs.getRawBits() == 0)
-	{
-		std::cerr << "Error\nDived by zero error" << std::endl;
-		temp.setRawBits(0);
-		return (temp);
-	}
+	// if (rhs.getRawBits() == 0)
+	// {
+	// 	std::cerr << "Error\nDived by zero error" << std::endl;
+	// 	temp.setRawBits(0);
+	// 	return (temp);
+	// }
 	result = ((this->getRawBits() * (1 << fractional))) / rhs.getRawBits();
 	temp.setRawBits(result);
 	return (temp);

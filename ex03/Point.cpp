@@ -11,7 +11,6 @@ Fixed   Point::getY(void) const
 	return (this->y);
 }
 
-
 Point::Point(void)
 	:	x(0)
 	,	y(0)
@@ -21,11 +20,6 @@ Point::Point(void)
 Point::~Point(void)
 {
 }
-
-
-// Point& Point::operator=(const Point& rhs)
-// {
-// }
 
 Point::Point(const Point& other)
 	:	x(other.x)

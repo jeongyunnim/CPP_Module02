@@ -5,9 +5,9 @@ bool    bsp( Point const a, Point const b, Point const c, Point const point)
 	Fixed	denominator(((b.getY() - c.getY()) * (a.getX() - c.getX())) + ((c.getX() - b.getX()) * (a.getY() - c.getY())));
 	float	denominatorF;
 	Fixed	alpha;
-	Fixed	alphaF;
+	float	alphaF;
 	Fixed	beta;
-	Fixed	betaF;
+	float	betaF;
 
 	denominatorF = ((b.getY().toFloat() - c.getY().toFloat()) * (a.getX().toFloat() - c.getX().toFloat()) + (c.getX().toFloat() - b.getX().toFloat()) * (a.getY().toFloat() - c.getY().toFloat()));
 	if (denominator.getRawBits() == 0)
@@ -20,9 +20,10 @@ bool    bsp( Point const a, Point const b, Point const c, Point const point)
 	std::cout << "denominator: " << denominator << std::endl;
 	std::cout << "alpha: " << alpha << std::endl;
 	std::cout << "beta: " << beta << std::endl;
-	std::cout << "\n\ndenominatorF: " << denominatorF << std::endl;
+	std::cout << "\n<float>\ndenominatorF: " << denominatorF << std::endl;
 	std::cout << "alphaF: " << alphaF << std::endl;
 	std::cout << "betaF: " << betaF << std::endl;
+	std::cout << "=======================================================" << std::endl;
 	if (alpha <= 0 || alpha >= 1 || beta <= 0 || beta >= 1 || alpha + beta >= 1)
 		return (false);
 	return (true);

@@ -17,10 +17,9 @@ bool    bsp( Point const a, Point const b, Point const c, Point const point)
 	alphaF = ((b.getY().toFloat() - c.getY().toFloat()) * (point.getX().toFloat() - c.getX().toFloat()) + (c.getX().toFloat() - b.getX().toFloat()) * (point.getY().toFloat() - c.getY().toFloat())) / denominator.toFloat();
 	betaF = ((c.getY().toFloat() - a.getY().toFloat()) * (point.getX().toFloat() - c.getX().toFloat()) + (a.getX().toFloat() - c.getX().toFloat()) * (point.getY().toFloat() - c.getY().toFloat())) / denominator.toFloat();
 
-	std::cout << "denominator: " << denominator << std::endl;
 	std::cout << "alpha: " << alpha << std::endl;
 	std::cout << "beta: " << beta << std::endl;
-	std::cout << "\n<float>\ndenominatorF: " << denominatorF << std::endl;
+	std::cout << "\n<float>\n" << std::endl;
 	std::cout << "alphaF: " << alphaF << std::endl;
 	std::cout << "betaF: " << betaF << std::endl;
 	std::cout << "=======================================================" << std::endl;

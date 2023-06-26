@@ -19,7 +19,7 @@ bool    bsp( Point const a, Point const b, Point const c, Point const point)
 
 	std::cout << "alpha: " << alpha << std::endl;
 	std::cout << "beta: " << beta << std::endl;
-	std::cout << "\n<float>\n" << std::endl;
+	std::cout << "\n<float>" << std::endl;
 	std::cout << "alphaF: " << alphaF << std::endl;
 	std::cout << "betaF: " << betaF << std::endl;
 	std::cout << "=======================================================" << std::endl;

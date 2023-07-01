@@ -12,7 +12,12 @@ int main( void ) {
     std::cout << a << std::endl;
     std::cout << b << std::endl;
     std::cout << Fixed::max( a, b ) << std::endl;
+
     std::cout << a + b << std::endl;
+    std::cout << Fixed( 5.05f ) / Fixed( 2 ) << std::endl;
+    std::cout << Fixed( 5.05f ) - Fixed( 2 ) << std::endl;
+    std::cout << Fixed( 0 ) * Fixed( 5.05f ) << std::endl;
+    std::cout << Fixed( 5.05f ) / Fixed( 0.0f ) << std::endl;
 
     return 0;
 }

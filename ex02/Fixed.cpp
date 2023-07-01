@@ -6,10 +6,10 @@ Fixed	Fixed::max(const Fixed& lhs, const Fixed& rhs)
 {
 	Fixed	temp;
 
-	if (lhs.getRawBits() > rhs.getRawBits())
-		temp.rawBit = lhs.getRawBits();
+	if (lhs.rawBit > rhs.rawBit)
+		temp.rawBit = lhs.rawBit;
 	else
-		temp.rawBit = rhs.getRawBits();
+		temp.rawBit = rhs.rawBit;
 	return (temp);
 }
 
@@ -17,10 +17,10 @@ Fixed	Fixed::max(Fixed& lhs, Fixed& rhs)
 {
 	Fixed	temp;
 
-	if (lhs.getRawBits() > rhs.getRawBits())
-		temp.rawBit = lhs.getRawBits();
+	if (lhs.rawBit > rhs.rawBit)
+		temp.rawBit = lhs.rawBit;
 	else
-		temp.rawBit = rhs.getRawBits();
+		temp.rawBit = rhs.rawBit;
 	return (temp);
 }
 
@@ -28,10 +28,10 @@ Fixed	Fixed::min(const Fixed& lhs, const Fixed& rhs)
 {
 	Fixed	temp;
 
-	if (lhs.getRawBits() < rhs.getRawBits())
-		temp.rawBit = lhs.getRawBits();
+	if (lhs.rawBit < rhs.rawBit)
+		temp.rawBit = lhs.rawBit;
 	else
-		temp.rawBit = rhs.getRawBits();
+		temp.rawBit = rhs.rawBit;
 	return (temp);
 }
 
@@ -39,10 +39,10 @@ Fixed	Fixed::min(Fixed& lhs, Fixed& rhs)
 {
 	Fixed	temp;
 
-	if (lhs.getRawBits() < rhs.getRawBits())
-		temp.rawBit = lhs.getRawBits();
+	if (lhs.rawBit < rhs.rawBit)
+		temp.rawBit = lhs.rawBit;
 	else
-		temp.rawBit = rhs.getRawBits();
+		temp.rawBit = rhs.rawBit;
 	return (temp);
 }
 
@@ -68,13 +68,13 @@ Fixed::~Fixed()
 
 Fixed& Fixed::operator=(const Fixed& f)
 {
-	this->setRawBits(f.getRawBits());
+	this->rawBit = f.rawBit;
 	return (*this);
 }
 
 Fixed::Fixed(const Fixed& f)
 {
-	setRawBits(f.getRawBits());
+	rawBit = f.rawBit;
 }
 
 Fixed::Fixed(const int value)
@@ -99,13 +99,13 @@ float	Fixed::toFloat(void) const
 {
 	float	result;
 
-	result = getRawBits() / static_cast<float>(1 << fractional);
+	result = rawBit / static_cast<float>(1 << fractional);
 	return (result);
 }
 
 bool		Fixed::operator>(const Fixed& rhs)
 {
-	if (this->getRawBits() > rhs.getRawBits())
+	if (this->rawBit > rhs.rawBit)
 		return (true);
 	else
 		return (false);
@@ -113,7 +113,7 @@ bool		Fixed::operator>(const Fixed& rhs)
 
 bool		Fixed::operator<(const Fixed& rhs)
 {
-	if (this->getRawBits() < rhs.getRawBits())
+	if (this->rawBit < rhs.rawBit)
 		return (true);
 	else
 		return (false);
@@ -121,7 +121,7 @@ bool		Fixed::operator<(const Fixed& rhs)
 
 bool		Fixed::operator>=(const Fixed& rhs)
 {
-	if (this->getRawBits() >= rhs.getRawBits())
+	if (this->rawBit >= rhs.rawBit)
 		return (true);
 	else
 		return (false);
@@ -129,7 +129,7 @@ bool		Fixed::operator>=(const Fixed& rhs)
 
 bool		Fixed::operator<=(const Fixed& rhs)
 {
-	if (this->getRawBits() <= rhs.getRawBits())
+	if (this->rawBit <= rhs.rawBit)
 		return (true);
 	else
 		return (false);
@@ -137,7 +137,7 @@ bool		Fixed::operator<=(const Fixed& rhs)
 
 bool		Fixed::operator==(const Fixed& rhs)
 {
-	if (this->getRawBits() == rhs.getRawBits())
+	if (this->rawBit == rhs.rawBit)
 		return (true);
 	else
 		return (false);
@@ -145,7 +145,7 @@ bool		Fixed::operator==(const Fixed& rhs)
 
 bool		Fixed::operator!=(const Fixed& rhs)
 {
-	if (this->getRawBits() != rhs.getRawBits())
+	if (this->rawBit != rhs.rawBit)
 		return (true);
 	else
 		return (false);
@@ -155,7 +155,7 @@ Fixed		Fixed::operator+(const Fixed& rhs)
 {
 	Fixed	temp;
 	
-	temp.setRawBits(this->getRawBits() + rhs.getRawBits());
+	temp.rawBit = this->rawBit + rhs.rawBit;
 	return (temp);
 }
 
@@ -163,7 +163,7 @@ Fixed		Fixed::operator-(const Fixed& rhs)
 {
 	Fixed	temp;
 	
-	temp.setRawBits(this->getRawBits() - rhs.getRawBits());
+	temp.rawBit = rawBit - rhs.rawBit;
 	return (temp);
 }
 
@@ -171,7 +171,7 @@ Fixed		Fixed::operator*(const Fixed& rhs)
 {
 	float	result;
 	
-	result = (this->getRawBits() * rhs.getRawBits()) / (1 << fractional);
+	result = (this->rawBit * rhs.rawBit) / (1 << fractional);
 	Fixed	temp(result / (1 << fractional));
 	
 	return (temp);
@@ -182,14 +182,14 @@ Fixed		Fixed::operator/(const Fixed& rhs)
 	float	result;
 	Fixed	temp;
 	
-	if (rhs.getRawBits() == 0)
+	if (rhs.rawBit == 0)
 	{
 		std::cerr << "Error\nDived by zero error" << std::endl;
-		temp.setRawBits(0);
+		temp.rawBit = 0;
 		return (temp);
 	}
-	result = ((this->getRawBits() * (1 << fractional))) / rhs.getRawBits();
-	temp.setRawBits(result);
+	result = ((this->rawBit * (1 << fractional))) / rhs.rawBit;
+	temp.rawBit = result;
 	return (temp);
 }
 

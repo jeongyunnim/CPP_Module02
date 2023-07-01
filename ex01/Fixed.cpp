@@ -27,14 +27,14 @@ Fixed::~Fixed()
 Fixed& Fixed::operator=(const Fixed& f)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
-	this->setRawBits(f.getRawBits());
+	rawBit = f.rawBit;
 	return (*this);
 }
 
 Fixed::Fixed(const Fixed& f)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	setRawBits(f.getRawBits());
+	*this = f;
 }
 
 Fixed::Fixed(const int value)
@@ -59,8 +59,23 @@ int	Fixed::toInt(void) const
 float	Fixed::toFloat(void) const
 {
 	float	result;
-	
-	result = getRawBits() / static_cast<float>(1 << fractional);
+	float	fractionalPart;
+	int		intPart;
+	int		signPart;
+
+	if (rawBit < 0)
+	{
+		signPart = -1;
+		intPart = static_cast<int>((rawBit * signPart) >> fractional);
+		fractionalPart = 1 - (static_cast<float>(rawBit & 0xFF) / (1 << fractional));
+	}
+	else
+	{
+		signPart = 1;
+		intPart = static_cast<int>(rawBit >> fractional);
+		fractionalPart = (static_cast<float>(rawBit & 0xFF) / (1 << fractional));
+	}
+	result = (intPart + fractionalPart) * signPart;
 	return (result);
 }
 
